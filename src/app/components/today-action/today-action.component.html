@@ -1,0 +1,36 @@
+<section class="today-action">
+  <section class="today-action__panel soft-card">
+    <div class="section-heading">
+      <h2>Outfit Generator</h2>
+      <p>Get a quick outfit suggestion based on your wardrobe and the current weather.</p>
+    </div>
+
+    <button class="simple-button today-action__button" type="button" (click)="suggestOutfit()">
+      Generate Outfit
+    </button>
+
+    <div *ngIf="suggestedItems.length > 0; else suggestionState" class="today-action__suggestion">
+      <div class="today-action__outfit-row">
+        <div *ngFor="let item of suggestedItems" class="today-action__item">
+          <img [src]="item.imagePath" [alt]="item.name" />
+          <p>{{ item.category }}</p>
+          <strong>{{ item.name }}</strong>
+        </div>
+      </div>
+      <p class="today-action__hint">{{ suggestionLabel }}</p>
+    </div>
+
+    <ng-template #suggestionState>
+    </ng-template>
+  </section>
+
+  <section class="today-action__panel soft-card">
+    <div class="section-heading">
+      <h2>Daily Snap</h2>
+      <p>Document your look. Add today's outfit to your visual archive.</p>
+    </div>
+
+    <app-daily-snap [imageUrl]="snapPreview" buttonLabel="Upload image" (previewChange)="onSnapPreviewChange($event)">
+    </app-daily-snap>
+  </section>
+</section>

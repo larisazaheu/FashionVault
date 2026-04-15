@@ -1,0 +1,94 @@
+.wardrobe-page {
+  gap: 2rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(320px, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.hero__copy,
+.hero__panel {
+  border: 1px solid var(--app-border);
+  border-radius: 32px;
+  background: var(--app-surface);
+  box-shadow: 0 24px 60px var(--app-shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.hero__eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--app-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.hero__copy h1 {
+  margin: 0;
+  color: var(--app-text);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+.hero__text {
+  max-width: 42rem;
+  margin: 1.1rem 0 0;
+  color: var(--app-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.hero__add-btn {
+  margin-top: 1.5rem;
+}
+
+.card-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.recent,
+.filters {
+  display: grid;
+  gap: 1rem;
+}
+
+.filter-group {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.15rem 0 0.2rem;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero__copy,
+  .hero__panel {
+    border-radius: 28px;
+  }
+
+  .hero__copy {
+    padding: 1.4rem;
+  }
+}

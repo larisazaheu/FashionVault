@@ -1,0 +1,47 @@
+<aside class="overlay soft-card">
+  <div class="overlay__header">
+    <div>
+      <p class="overlay__eyebrow">Outfit details</p>
+      <h3>{{ selectedDateLabel || 'Pick a day' }}</h3>
+      <p *ngIf="outfit" class="overlay__title">{{ outfit.title }}</p>
+    </div>
+
+    <button *ngIf="outfit" class="overlay__close" type="button" (click)="closed.emit()">
+      &times;
+    </button>
+  </div>
+
+  <ng-container *ngIf="outfit; else emptyState">
+    <div class="overlay__scroll-container">
+      <div class="overlay__image-wrap">
+        <img [src]="outfit.imagePath" [alt]="outfit.title" class="main-outfit-img" />
+      </div>
+
+      <div class="overlay__list">
+        <div class="overlay__list-header">
+          <h4>Clothing items</h4>
+          <span>{{ outfit.items.length }} pieces</span>
+        </div>
+
+        <div *ngFor="let item of outfit.items" class="overlay__item">
+          <img [src]="item.imagePath" [alt]="item.name" class="item-img" />
+
+          <div class="overlay__item-copy">
+            <strong>{{ item.name }}</strong>
+            <div class="item-details">
+              <span>{{ item.category }}</span>
+              <span *ngIf="item.style">, {{ item.style }}</span>
+              <span *ngIf="item.brand">, {{ item.brand }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyState>
+    <div class="overlay__empty">
+      <p>Select a day with an outfit to view details.</p>
+    </div>
+  </ng-template>
+</aside>

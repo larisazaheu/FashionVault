@@ -1,0 +1,10 @@
+.dashboard-stats {
+  display: grid;
+  gap: 1rem;
+}
+
+.dashboard-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}

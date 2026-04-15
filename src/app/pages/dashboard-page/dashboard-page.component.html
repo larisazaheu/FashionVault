@@ -1,0 +1,23 @@
+<section class="page-shell dashboard-page">
+    <app-dashboard-stats [stats]="stats"></app-dashboard-stats>
+
+    <app-today-action [items]="items"></app-today-action>
+
+    <app-outfit-calendar [outfits]="outfitEntries"></app-outfit-calendar>
+
+    <section class="dashboard-page__section">
+        <div class="section-heading">
+            <h2>Recently worn</h2>
+            <p>Your latest wardrobe picks.</p>
+        </div>
+
+        <app-horizontal-carousel [items]="recentItems" ariaLabel="Recently worn dashboard items"
+            emptyMessage="No recently worn items yet.">
+            <ng-template let-item>
+                <app-clothing-card [item]="item" (favoriteToggle)="toggleFavorite($event)" (remove)="removeItem($event)"
+                    (markWorn)="markAsWorn($event)"></app-clothing-card>
+            </ng-template>
+        </app-horizontal-carousel>
+    </section>
+
+</section>

@@ -1,0 +1,8 @@
+.dashboard-page {
+  gap: 2rem;
+}
+
+.dashboard-page__section {
+  display: grid;
+  gap: 1rem;
+}

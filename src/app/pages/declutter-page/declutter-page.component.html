@@ -1,0 +1,40 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Decluttering</p>
+    <h1>Spot the pieces that have not been worn in a while.</h1>
+    <p>Use a simple last-worn filter to decide what to keep, donate, or restyle.</p>
+  </header>
+
+  <section class="feature-section">
+    <div class="feature-section__header">
+      <div>
+        <h2 class="feature-section__title">Unused items</h2>
+        <p class="feature-section__text">Items not worn within the selected number of days.</p>
+      </div>
+
+      <div class="pill-row">
+        <button *ngFor="let threshold of thresholds" class="toolbar__chip" type="button"
+          [class.toolbar__chip--active]="threshold === selectedThreshold" (click)="selectedThreshold = threshold">
+          {{ threshold }}+ days
+        </button>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="mini-card" *ngFor="let item of unusedItems">
+        <img [src]="item.imagePath" [alt]="item.name" />
+        <div class="pill-row">
+          <span class="badge badge--warn">Unused</span>
+          <span class="pill">{{ item.category }}</span>
+        </div>
+        <div class="mini-card__copy">
+          <h3>{{ item.name }}</h3>
+          <p>Last worn {{ item.lastWornLabel }}</p>
+        </div>
+        <button class="ghost-button" type="button" (click)="removeItem(item.id)">
+          Remove from wardrobe
+        </button>
+      </article>
+    </div>
+  </section>
+</section>

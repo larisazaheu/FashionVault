@@ -1,0 +1,80 @@
+<section class="page-shell wardrobe-page">
+  <header class="hero">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">Wardrobe</p>
+      <h1>Your Collection</h1>
+      <p class="hero__text">
+        A curated view of your pieces. Organize, filter, and manage your wardrobe with ease.
+      </p>
+      <button class="simple-button hero__add-btn" type="button" (click)="openAddItemModal()">
+        + Add Item
+      </button>
+    </div>
+
+    <div class="hero__panel">
+      <app-stat-card label="Items" [value]="items.length"></app-stat-card>
+      <app-stat-card label="Categories" [value]="categories.length"></app-stat-card>
+      <app-stat-card label="Most active" [value]="mostWornStyle"></app-stat-card>
+    </div>
+  </header>
+
+  <section class="recent">
+    <div class="section-heading">
+      <h2>Recently worn</h2>
+      <p>Pieces you reached for most recently.</p>
+    </div>
+
+    <app-horizontal-carousel [items]="recentItems" ariaLabel="Recently worn wardrobe items"
+      emptyMessage="No recently worn items yet.">
+      <ng-template let-item>
+        <app-clothing-card [item]="item" (favoriteToggle)="toggleFavorite($event)" (remove)="removeItem($event)"
+          (markWorn)="markAsWorn($event)"></app-clothing-card>
+      </ng-template>
+    </app-horizontal-carousel>
+  </section>
+
+  <section class="filters" aria-label="Wardrobe filters">
+    <div class="filter-group">
+      <div class="section-heading section-heading--compact">
+        <h2>Categories</h2>
+      </div>
+
+      <div class="toolbar">
+        <button *ngFor="let category of categoryFilters" class="toolbar__chip" type="button"
+          [class.toolbar__chip--active]="category === activeCategory" (click)="selectCategory(category)">
+          {{ category }}
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="section-heading section-heading--compact">
+        <h2>Style</h2>
+      </div>
+
+      <div class="toolbar">
+        <button *ngFor="let style of styleFilters" class="toolbar__chip" type="button"
+          [class.toolbar__chip--active]="style === activeStyle" (click)="selectStyle(style)">
+          {{ style }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="isLoading" class="state-card">
+    <p>Loading wardrobe items...</p>
+  </section>
+
+  <section *ngIf="!isLoading && visibleItems.length === 0" class="state-card">
+    <p>No items found for the selected filters.</p>
+  </section>
+
+  <section *ngIf="!isLoading && visibleItems.length > 0" class="card-grid">
+    <app-clothing-card *ngFor="let item of visibleItems; trackBy: trackByItemId" [item]="item"
+      (favoriteToggle)="toggleFavorite($event)" (remove)="removeItem($event)"
+      (markWorn)="markAsWorn($event)"></app-clothing-card>
+  </section>
+
+  <app-add-wardrobe-item-modal [isOpen]="isAddModalOpen" [categories]="categories" [seasons]="seasons" [colors]="colors"
+    [styles]="styles" (closed)="closeAddItemModal()" (saved)="saveItem($event)"></app-add-wardrobe-item-modal>
+</section>

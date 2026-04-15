@@ -1,0 +1,44 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Style and colors</p>
+    <h1>See your wardrobe palette in one place.</h1>
+    <p>Use a simple color view to understand what tones dominate your closet.</p>
+  </header>
+
+  <section class="feature-section">
+    <div class="feature-section__header">
+      <div>
+        <h2 class="feature-section__title">Current palette</h2>
+        <p class="feature-section__text">Unique colors pulled from your wardrobe items.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="mini-card palette-card" *ngFor="let color of colors">
+        <div class="palette-card__swatch" [style.background]="color.toLowerCase()"></div>
+        <div class="mini-card__copy">
+          <h3>{{ color }}</h3>
+          <p>Appears in your wardrobe palette.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="feature-section">
+    <div class="feature-section__header">
+      <div>
+        <h2 class="feature-section__title">Suggested combinations</h2>
+        <p class="feature-section__text">Static matching ideas to guide styling.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="mini-card" *ngFor="let set of matchingSets">
+        <h3>Matching set</h3>
+        <div class="pill-row">
+          <span class="pill" *ngFor="let color of set">{{ color }}</span>
+        </div>
+      </article>
+    </div>
+  </section>
+</section>

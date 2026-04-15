@@ -1,0 +1,64 @@
+<ng-container *ngIf="isLoginPage; else fullShell">
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #fullShell>
+  <div class="app-shell">
+    <aside class="app-sidebar">
+      <div class="app-brand">
+        <p class="app-brand__eyebrow">Fashion Vault</p>
+        <h1>Style Studio</h1>
+        <p>Master your look. Organize your vault, plan your next escape.</p>
+      </div>
+
+      <nav class="app-nav" aria-label="Primary navigation">
+        <a
+          *ngFor="let item of navItems"
+          class="app-nav__link"
+          [routerLink]="item.route"
+          routerLinkActive="app-nav__link--active">
+          <span>{{ item.label }}</span>
+          <small>{{ item.hint }}</small>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="app-main">
+      <header class="app-global-header">
+        <div class="header__search">
+          <span class="search-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          <input type="text" placeholder="Search for clothing, style..." />
+        </div>
+
+        <div class="header__actions">
+          <button class="header__btn" title="Favorites" type="button" (click)="openFavorites()">
+            <span class="heart-icon">&#9829;</span>
+            <span class="btn-badge">{{ favoritesCount }}</span>
+          </button>
+
+          <div class="header__user">
+            <div class="user__info">
+              <span class="user__name">Username</span>
+            </div>
+            <div class="user__avatar">
+              <img src="/images/outfits/rachel.jpg" alt="User" />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,82 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">The Travel Edit</p>
+    <h1>Pack smart for your next escape.</h1>
+    <p>Select your dates and activities to generate your custom wardrobe checklist.</p>
+  </header>
+
+  <section class="feature-section travel-layout">
+    <div class="travel-sidebar">
+      <div class="soft-card travel-form">
+        <h2 class="feature-section__title">Trip Details</h2>
+
+        <div class="field-card">
+          <label for="destination">Destination</label>
+          <input id="destination" [(ngModel)]="destination" placeholder="Ex: Paris, France" />
+        </div>
+
+        <div class="field-card">
+          <label>From</label>
+          <div class="date-picker-container">
+            <input type="date" [(ngModel)]="startDate" class="date-input" />
+            <span class="date-separator">To</span>
+            <input type="date" [(ngModel)]="endDate" class="date-input" />
+          </div>
+        </div>
+
+        <div class="field-card">
+          <label>What are you planning to do?</label>
+          <div class="activity-chips">
+            <button
+              *ngFor="let option of activityOptions"
+              type="button"
+              (click)="toggleActivity(option.value)"
+              [class.active]="isActivitySelected(option.value)"
+              class="chip">
+              <span class="chip-icon">{{ option.icon }}</span>
+              {{ option.label }}
+            </button>
+          </div>
+        </div>
+
+        <div class="weather-insight-card">
+          <div class="weather-badge">
+            <span class="weather-icon">Sun</span>
+            <span class="temp">18&deg;C - 22&deg;C</span>
+          </div>
+          <p class="weather-text">{{ weatherAdvice }}</p>
+        </div>
+      </div>
+
+      <div class="soft-card travel-checklist-container" *ngIf="masterChecklist.length > 0">
+        <h2 class="feature-section__title">Master Packing List</h2>
+        <p class="checklist-subtitle">Items needed for your selected looks:</p>
+        <div class="vertical-checklist">
+          <label class="check-row" *ngFor="let itemName of masterChecklist">
+            <input type="checkbox" class="custom-checkbox" />
+            <span class="item-name">{{ itemName }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="soft-card travel-suggestions">
+      <h2 class="feature-section__title">Planned Looks</h2>
+      <p class="feature-section__text" *ngIf="filteredOutfits.length === 0">
+        Select an activity from the left to see outfit suggestions.
+      </p>
+
+      <div class="outfit-group" *ngFor="let outfit of filteredOutfits">
+        <h3 class="outfit-category-title">{{ outfit.title }}</h3>
+        <div class="outfit-bundle">
+          <div class="bundle-item" *ngFor="let item of outfit.items">
+            <div class="bundle-image-wrap">
+              <img [src]="item.imagePath" [alt]="item.name" />
+            </div>
+            <span class="bundle-item-name">{{ item.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

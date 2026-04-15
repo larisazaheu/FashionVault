@@ -1,0 +1,30 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Capsule wardrobe</p>
+    <h1>Start a capsule with the pieces you already love most.</h1>
+    <p>For now, this page uses favorite items as a simple capsule starting point.</p>
+  </header>
+
+  <section class="feature-section">
+    <div class="feature-section__header">
+      <div>
+        <h2 class="feature-section__title">Favorite-based capsule</h2>
+        <p class="feature-section__text">A compact edit of go-to items.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="mini-card" *ngFor="let item of capsuleItems">
+        <img [src]="item.imagePath" [alt]="item.name" />
+        <div class="mini-card__copy">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.category }} • {{ item.style }}</p>
+        </div>
+        <div class="pill-row">
+          <span class="pill">{{ item.color }}</span>
+          <span class="badge badge--soft">Favorite</span>
+        </div>
+      </article>
+    </div>
+  </section>
+</section>

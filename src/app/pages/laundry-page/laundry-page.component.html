@@ -1,0 +1,61 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Laundry system</p>
+    <h1>Track what is ready to wear and what still needs care.</h1>
+    <p>
+      Keep a quick overview of what is clean, what is unavailable, and what should come back into
+      rotation next.
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-tile__label">Available</span>
+        <strong>{{ availableCount }}</strong>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-tile__label">In laundry</span>
+        <strong>{{ laundryCount }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="feature-section">
+    <div class="feature-section__header">
+      <div>
+        <h2 class="feature-section__title">Laundry overview</h2>
+        <p class="feature-section__text">Toggle each item between available and unavailable.</p>
+      </div>
+
+      <div class="pill-row">
+        <button class="toolbar__chip" type="button" [class.toolbar__chip--active]="!showLaundryOnly"
+          (click)="toggleView(false)">
+          All items
+        </button>
+        <button class="toolbar__chip" type="button" [class.toolbar__chip--active]="showLaundryOnly"
+          (click)="toggleView(true)">
+          Laundry only
+        </button>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="mini-card" *ngFor="let item of filteredItems">
+        <img [src]="item.imagePath" [alt]="item.name" />
+        <div class="pill-row">
+          <span class="pill">{{ item.category }}</span>
+          <span class="badge" [class.badge--ok]="item.availability === 'Available'"
+            [class.badge--warn]="item.availability === 'Laundry'">
+            {{ item.availability }}
+          </span>
+        </div>
+        <div class="mini-card__copy">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.brand }} • Last worn {{ item.lastWornLabel }}</p>
+        </div>
+        <button class="simple-button" type="button" (click)="toggleAvailability(item.id)">
+          {{ item.availability === 'Available' ? 'Send to Laundry' : 'Mark Available' }}
+        </button>
+      </article>
+    </div>
+  </section>
+</section>

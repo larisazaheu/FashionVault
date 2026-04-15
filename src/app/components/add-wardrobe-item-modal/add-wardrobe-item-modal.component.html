@@ -1,0 +1,77 @@
+<div *ngIf="isOpen" class="modal-backdrop" (click)="close()">
+  <section class="modal" (click)="$event.stopPropagation()">
+    <div class="modal__header">
+      <div>
+        <p class="modal__eyebrow">New wardrobe item</p>
+        <h2>Add a piece to your closet</h2>
+      </div>
+      <button class="modal__close-btn" type="button" aria-label="Close" (click)="close()">
+        &times;
+      </button>
+    </div>
+
+    <form class="modal__form" (ngSubmit)="save()">
+      <label class="field">
+        <span>Name</span>
+        <input [(ngModel)]="form.name" name="name" required placeholder="Silk camisole" />
+      </label>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Category</span>
+          <select [(ngModel)]="form.category" name="category" (ngModelChange)="onCategoryChange($event)">
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Season</span>
+          <select [(ngModel)]="form.season" name="season">
+            <option *ngFor="let season of seasons" [value]="season">{{ season }}</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Brand</span>
+          <input [(ngModel)]="form.brand" name="brand" required placeholder="Studio label" />
+        </label>
+
+        <label class="field">
+          <span>Color</span>
+          <select [(ngModel)]="form.color" name="color" required>
+            <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Style</span>
+        <select [(ngModel)]="form.style" name="style">
+          <option *ngFor="let style of styles" [value]="style">{{ style }}</option>
+        </select>
+      </label>
+
+      <div class="field">
+        <span>Image</span>
+        <div class="image-picker">
+          <button
+            *ngFor="let image of availableImages; trackBy: trackByImageId"
+            class="image-picker__option"
+            [class.image-picker__option--selected]="form.imagePath === image.path"
+            type="button"
+            (click)="selectImage(image.path)">
+            <img [src]="image.path" [alt]="image.label" />
+            <span>{{ image.label }}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal__actions">
+        <button class="modal__secondary-btn" type="button" (click)="close()">Cancel</button>
+        <button class="modal__primary-btn" type="submit">Save Item</button>
+      </div>
+    </form>
+  </section>
+</div>

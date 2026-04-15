@@ -1,0 +1,32 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Weather outfit</p>
+    <h1>What should I wear today?</h1>
+    <p>Get a quick outfit suggestion based on your wardrobe and the current weather.</p>
+  </header>
+
+  <section class="feature-section weather-layout">
+    <article class="soft-card weather-card">
+      <p class="feature-hero__eyebrow">Today</p>
+      <h2>Sunny in Brasov</h2>
+      <p class="weather-card__temp">25°C</p>
+      <p class="feature-section__text"></p>
+    </article>
+
+    <div class="feature-grid">
+      <article class="mini-card" *ngFor="let suggestion of suggestions">
+        <span class="badge badge--soft">{{ suggestion.temperature }}</span>
+        <div class="mini-card__copy">
+          <h3>{{ suggestion.title }}</h3>
+          <p>{{ suggestion.note }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="weather-generator-section" style="margin-bottom: 2rem;">
+    <app-today-action [items]="items" title="Personalized Suggestion"
+      description="Based on the 18°C cloudy sky in Brasov, we picked this for you:">
+    </app-today-action>
+  </section>
+</section>

@@ -1,0 +1,38 @@
+<div class="register-container">
+    <div class="register-card">
+        <header class="register-header">
+            <p class="register-eyebrow">Fashion Vault</p>
+            <h1>Welcome</h1>
+            <p>Enter your details to create your studio.</p>
+        </header>
+
+        <form class="register-form" (ngSubmit)="onRegister()">
+            <div class="field">
+                <span>Username</span>
+                <input type="text" name="username" [(ngModel)]="username" placeholder="Enter username" required />
+            </div>
+
+            <div class="field">
+                <span>Email</span>
+                <input type="email" name="email" [(ngModel)]="email" placeholder="name@gmail.com" required />
+            </div>
+
+            <div class="field">
+                <span>Password</span>
+                <input type="password" name="password" [(ngModel)]="password" placeholder="Enter password" required />
+            </div>
+
+            <div class="field">
+                <span>Confirm Password</span>
+                <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword"
+                    placeholder="Confirm password" required />
+            </div>
+
+            <button class="register-btn" (click)="onRegister()" type="submit">Create Account</button>
+        </form>
+
+        <footer class="register-footer">
+            <p>Already have an account? <a class="login-hyperlink" routerLink="/login">Sign in</a></p>
+        </footer>
+    </div>
+</div>

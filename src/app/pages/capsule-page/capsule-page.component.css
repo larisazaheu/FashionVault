@@ -1,0 +1,8 @@
+.mini-card__copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.mini-card__copy p {
+  color: var(--app-muted);
+}

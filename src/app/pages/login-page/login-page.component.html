@@ -1,0 +1,27 @@
+<div class="login-container">
+    <div class="login-card">
+        <header class="login-header">
+            <p class="login-eyebrow">Fashion Vault</p>
+            <h1>Welcome back</h1>
+            <p>Enter your details to access your studio.</p>
+        </header>
+
+        <form class="login-form" (ngSubmit)="onLogin()">
+            <div class="field">
+                <span>Email</span>
+                <input type="email" name="email" [(ngModel)]="email" placeholder="name@gmail.com" required />
+            </div>
+
+            <div class="field">
+                <span>Password</span>
+                <input type="password" name="password" [(ngModel)]="password" placeholder="Enter password" required />
+            </div>
+
+            <button class="login-btn" (click)="onLogin()" type="submit">Sign In</button>
+        </form>
+
+        <footer class="login-footer">
+            <p>Don't have an account? <a class="register-hyperlink" routerLink="/register">Sign up</a></p>
+        </footer>
+    </div>
+</div>

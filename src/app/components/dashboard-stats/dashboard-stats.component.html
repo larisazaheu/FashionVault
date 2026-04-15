@@ -1,0 +1,24 @@
+<section class="dashboard-stats">
+  <div class="section-heading">
+    <h2>Style Insights</h2>
+    <p>An overview of your recent looks, habits, and current vibes.</p>
+  </div>
+
+  <div class="dashboard-stats__grid">
+    <app-stat-card label="Snap Streak" [value]="stats ? stats.snapStreak + ' days' : '--'"
+      hint="Keep the momentum going."></app-stat-card>
+
+    <app-stat-card label="Most Worn Style" [value]="stats?.mostWornStyle ?? '--'"
+      hint="Your current aesthetic."></app-stat-card>
+
+    <ng-container *ngIf="stats?.weather; else newInCard">
+      <app-stat-card [label]="'Weather in ' + stats?.weather?.city" [value]="stats?.weather?.temperature + '°C'"
+        [hint]="'Current ' + (stats?.weather?.condition?.toLowerCase() ?? '') + ' conditions.'"></app-stat-card>
+    </ng-container>
+
+    <ng-template #newInCard>
+      <app-stat-card label="New In" [value]="stats ? stats.newInCount + ' pieces' : '--'"
+        hint="Added to your wardrobe in the last 30 days."></app-stat-card>
+    </ng-template>
+  </div>
+</section>

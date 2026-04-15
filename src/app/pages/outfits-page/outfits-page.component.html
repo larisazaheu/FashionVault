@@ -1,0 +1,87 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Outfit builder</p>
+    <h1>Create looks by selecting wardrobe pieces visually.</h1>
+    <p>Group items by category so you can build a full outfit without scrolling too much.</p>
+  </header>
+
+  <section class="feature-section outfits-layout">
+    <div class="soft-card outfits-picker">
+      <div class="feature-section__header">
+        <div>
+          <h2 class="feature-section__title">Choose pieces</h2>
+          <p class="feature-section__text">Select tops, bottoms, and shoes from each carousel.</p>
+        </div>
+      </div>
+
+      <div class="outfit-groups">
+        <section *ngFor="let group of groups" class="outfit-group">
+          <h3>{{ group.label }}</h3>
+          <app-horizontal-carousel [items]="itemsForGroup(group.categories)" ariaLabel="{{ group.label }} items">
+            <ng-template let-item>
+              <button class="mini-card mini-card--select" type="button"
+                [class.mini-card--active]="selectedItemIds.includes(item.id)" (click)="toggleSelection(item.id)">
+                <img [src]="item.imagePath" [alt]="item.name" />
+                <div class="mini-card__copy">
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.style }}</p>
+                </div>
+              </button>
+            </ng-template>
+          </app-horizontal-carousel>
+        </section>
+      </div>
+    </div>
+
+    <aside class="soft-card outfits-summary">
+      <div class="feature-section__header">
+        <div>
+          <h2 class="feature-section__title">Current outfit</h2>
+          <p class="feature-section__text">Review and save the pieces you selected.</p>
+        </div>
+      </div>
+
+      <div class="pill-row" *ngIf="selectedItems.length > 0">
+        <span class="pill" *ngFor="let item of selectedItems">{{ item.name }}</span>
+      </div>
+
+      <div class="action-row">
+        <button class="simple-button" type="button" (click)="createOutfit()" [disabled]="selectedItems.length === 0">
+          Create Outfit
+        </button>
+        <button class="ghost-button" type="button" (click)="removeOutfit()" [disabled]="selectedItems.length === 0">
+          Remove Outfit
+        </button>
+      </div>
+
+      <p *ngIf="createdOutfitLabel" class="feature-section__text">{{ createdOutfitLabel }}</p>
+      <p *ngIf="selectedItems.length === 0" class="feature-section__text">
+        Pick at least one piece from each category to build a complete look.
+      </p>
+    </aside>
+  </section>
+
+  <section class="feature-section">
+    <div class="feature-section__header">
+      <div>
+        <h2 class="feature-section__title">Saved outfits</h2>
+        <p class="feature-section__text">Mock outfits for inspiration.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="mini-card" *ngFor="let outfit of savedOutfits">
+        <div class="pill-row">
+          <span class="badge badge--soft">Saved look</span>
+        </div>
+        <div class="mini-card__copy">
+          <h3>{{ outfit.name }}</h3>
+          <p>{{ outfit.note }}</p>
+        </div>
+        <div class="pill-row">
+          <span class="pill" *ngFor="let item of outfit.items">{{ item }}</span>
+        </div>
+      </article>
+    </div>
+  </section>
+</section>

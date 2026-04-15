@@ -1,0 +1,22 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Curated Collection</p>
+    <h1>Your Favorites</h1>
+    <p>Everything you love in one place. Your most-worn and highest-rated pieces.</p>
+  </header>
+
+  <section class="feature-section">
+    <div class="feature-grid" *ngIf="favoriteItems.length > 0; else emptyState">
+      <app-clothing-card *ngFor="let item of favoriteItems" [item]="item" (favoriteToggle)="toggleFavorite($event)"
+        (remove)="removeItem($event)">
+      </app-clothing-card>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="soft-card empty-favorites">
+        <p class="feature-section__text">You haven't added any favorites yet. Start by hearting items in your wardrobe!
+        </p>
+      </div>
+    </ng-template>
+  </section>
+</section>

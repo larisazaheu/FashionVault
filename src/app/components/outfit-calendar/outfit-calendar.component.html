@@ -1,0 +1,49 @@
+<section class="calendar-section">
+  <div class="section-heading">
+    <h2>Lookbook Archive</h2>
+    <p>Your month in style. Tap a day to revisit a look.</p>
+  </div>
+
+  <div class="calendar-layout">
+    <section class="calendar soft-card">
+      <div class="calendar__header">
+        <div>
+          <p class="calendar__eyebrow">calendar</p>
+          <h3>{{ monthLabel }}</h3>
+        </div>
+
+        <div class="calendar__actions">
+          <button class="ghost-button calendar__action" type="button" (click)="showPreviousMonth()">
+            &larr;
+          </button>
+          <button class="ghost-button calendar__action" type="button" (click)="showNextMonth()">
+            &rarr;
+          </button>
+        </div>
+      </div>
+
+      <div class="calendar__weekdays">
+        <span *ngFor="let weekday of weekdays">{{ weekday }}</span>
+      </div>
+
+      <div class="calendar__grid">
+        <button *ngFor="let day of calendarDays; trackBy: trackByDate" class="calendar__day" type="button"
+          [class.calendar__day--muted]="!day.isCurrentMonth" [class.calendar__day--today]="day.isToday"
+          [class.calendar__day--selected]="day.isSelected" [class.calendar__day--has-outfit]="!!day.outfit"
+          (click)="selectDay(day)">
+
+          <div class="calendar__day-content">
+            <span class="calendar__day-number">{{ day.dayNumber }}</span>
+            <img *ngIf="day.outfit" [src]="day.outfit.imagePath" [alt]="day.outfit.title" class="calendar__day-img" />
+          </div>
+
+          <span *ngIf="day.isToday" class="calendar__day-dot"></span>
+        </button>
+      </div>
+    </section>
+
+    <app-outfit-day-overlay [outfit]="selectedOutfit" [selectedDateLabel]="selectedDateLabel"
+      (closed)="clearSelection()">
+    </app-outfit-day-overlay>
+  </div>
+</section>

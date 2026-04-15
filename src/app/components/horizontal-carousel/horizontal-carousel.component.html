@@ -1,0 +1,40 @@
+<div *ngIf="itemTemplate && items.length > 0; else emptyState" class="carousel">
+  <button
+    class="carousel__nav"
+    type="button"
+    aria-label="Scroll left"
+    [disabled]="!canScrollLeft"
+    (click)="scrollLeft()"
+  >
+    &larr;
+  </button>
+
+  <div
+    #scrollContainer
+    class="carousel__track"
+    [attr.aria-label]="ariaLabel"
+    (scroll)="onScroll()"
+  >
+    <div *ngFor="let item of items; let index = index" class="carousel__item">
+      <ng-container
+        *ngTemplateOutlet="itemTemplate; context: { $implicit: item, index: index }"
+      ></ng-container>
+    </div>
+  </div>
+
+  <button
+    class="carousel__nav"
+    type="button"
+    aria-label="Scroll right"
+    [disabled]="!canScrollRight"
+    (click)="scrollRight()"
+  >
+    &rarr;
+  </button>
+</div>
+
+<ng-template #emptyState>
+  <div class="state-card state-card--compact">
+    <p>{{ emptyMessage }}</p>
+  </div>
+</ng-template>

@@ -1,0 +1,252 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 1.5rem;
+  min-height: 100vh;
+  width: min(1440px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0 1.5rem;
+}
+
+.app-global-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  min-height: 72px;
+  flex-shrink: 0;
+  padding: 0 1.5rem;
+  background: var(--app-surface);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--app-border);
+  border-radius: 24px;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 32px var(--app-shadow-soft);
+}
+
+.header__search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--app-surface-soft);
+  padding: 0.65rem 1.15rem;
+  border-radius: 16px;
+  flex: 0 1 420px;
+}
+
+.header__search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  color: var(--app-text);
+  width: 100%;
+}
+
+.header__search .search-icon {
+  color: var(--app-primary);
+  display: flex;
+  align-items: center;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__btn {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: var(--app-surface-soft);
+  border-radius: 14px;
+  cursor: pointer;
+  color: var(--app-primary-strong);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.header__btn:hover {
+  background: var(--app-lilac);
+  color: var(--app-text);
+}
+
+.btn-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--app-accent);
+  color: var(--app-text);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 8px;
+  border: 2px solid var(--app-white);
+}
+
+.header__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--app-border);
+}
+
+.user__name {
+  font-weight: 600;
+  color: var(--app-text);
+  font-size: 0.9rem;
+}
+
+.user__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--app-surface-soft);
+}
+
+.user__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(225, 210, 244, 0.42);
+  border: 1px solid var(--app-border);
+  border-radius: 32px;
+  backdrop-filter: blur(12px);
+}
+
+.app-brand h1 {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 1.75rem;
+  color: var(--app-text);
+  letter-spacing: -0.02em;
+}
+
+.app-brand p {
+  margin: 0;
+  color: var(--app-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.app-brand__eyebrow {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  color: var(--app-primary);
+}
+
+.app-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.app-nav__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  border-radius: 18px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  background: transparent;
+}
+
+.app-nav__link span {
+  font-weight: 600;
+  color: var(--app-text);
+}
+
+.app-nav__link small {
+  color: var(--app-muted);
+  font-size: 0.75rem;
+}
+
+.app-nav__link:hover {
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.app-nav__link--active {
+  background: var(--app-white) !important;
+  box-shadow: 0 4px 12px var(--app-shadow-soft);
+}
+
+.app-nav__link--active span {
+  color: var(--app-primary-strong);
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 0.5rem;
+    gap: 0;
+    padding-bottom: 80px;
+  }
+
+  .app-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--app-border);
+    border-radius: 0;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .app-brand {
+    display: none;
+  }
+
+  .app-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0;
+  }
+
+  .app-nav__link {
+    background: transparent;
+    padding: 0.5rem;
+    align-items: center;
+  }
+
+  .app-nav__link small {
+    display: none;
+  }
+
+  .app-global-header {
+    margin-top: 0.5rem;
+  }
+}

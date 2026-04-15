@@ -1,0 +1,20 @@
+<section class="feature-page">
+  <header class="feature-hero">
+    <p class="feature-hero__eyebrow">Outfit planning</p>
+    <h1>Plan your week with a simple daily outfit log.</h1>
+    <p>Keep planning lightweight with a clean list of daily looks and notes.</p>
+  </header>
+
+  <section class="feature-section">
+    <div class="feature-grid planner-grid">
+      <article class="mini-card" *ngFor="let day of weekPlan">
+        <span class="badge badge--soft">{{ day.day }}</span>
+        <div class="mini-card__copy">
+          <h3>{{ day.outfit }}</h3>
+          <p>{{ day.note }}</p>
+        </div>
+        <app-daily-snap [imageUrl]="day.photoUrl" (previewChange)="updateDayPhoto(day.id, $event)"></app-daily-snap>
+      </article>
+    </div>
+  </section>
+</section>

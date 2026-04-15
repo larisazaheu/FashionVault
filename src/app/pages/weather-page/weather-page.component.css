@@ -1,0 +1,58 @@
+.weather-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.weather-card {
+  padding: 1.5rem;
+}
+
+.weather-card h2,
+.weather-card p {
+  margin: 0;
+}
+
+.weather-card__temp {
+  margin: 0.6rem 0;
+  color: var(--app-text);
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.weather-card--preview {
+  display: grid;
+  gap: 1rem;
+}
+
+.weather-card__hint {
+  color: var(--app-muted);
+}
+
+.mini-card__copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.mini-card__copy p {
+  color: var(--app-muted);
+}
+
+.weather-generator-section {
+  width: 100%;
+}
+
+.weather-generator-section app-today-action {
+  display: block;
+}
+
+.feature-section.weather-layout {
+  margin-top: 1rem;
+}
+
+@media (max-width: 980px) {
+  .weather-layout {
+    grid-template-columns: 1fr;
+  }
+}
