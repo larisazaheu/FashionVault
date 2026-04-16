@@ -80,7 +80,7 @@ The project is built using a modular, component-based architecture with mock dat
 
 **Preview**
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a48ea1eb-4b98-49e6-bc29-1ecbf0373cfe" width="60%" />
+  <img width="1391" height="856" alt="travel" src="https://github.com/user-attachments/assets/b761a29f-39f7-4d45-ad29-71c3c0ba6b70"  width="60%"/>
 </p>
 
 ---
