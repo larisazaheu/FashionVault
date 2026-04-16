@@ -2,8 +2,6 @@
 
 Frontend Angular application for managing a digital wardrobe, creating outfits, and planning clothing choices based on weather, activities, and daily context.
 
-The project is built using a modular, component-based architecture with mock data, focusing on maintainability, reusability, and a clean UI structure.
-
 ---
 
 ## Features
